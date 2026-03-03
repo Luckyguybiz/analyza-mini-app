@@ -14,8 +14,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .header{display:flex;align-items:center;padding:16px 20px;position:relative}
-.header .back{width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--red)}
+.header .back{width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--red);background:none;border:none}
 .header .back svg{width:24px;height:24px}
 .header .title{flex:1;text-align:center;font-size:17px;font-weight:600}
 .header .action{width:32px;height:32px}
@@ -40,11 +41,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .checkbox{width:22px;height:22px;min-width:22px;border:2px solid #BDBDBD;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .checkbox.checked{background:var(--red);border-color:var(--red)}
 .checkbox.checked::after{content:'';width:8px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);margin-top:-2px}
-.tab-bar{display:flex;border-top:1px solid #E0E0E0;padding:8px 0 calc(8px + env(safe-area-inset-bottom));background:#fff;position:fixed;bottom:0;left:0;right:0;z-index:100}
-.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;cursor:pointer;color:var(--gray-dark);transition:color .2s;font-size:10px}
-.tab-item.active{color:var(--red)}
-.tab-item svg{width:24px;height:24px}
-.content{flex:1;padding:20px;padding-bottom:80px;overflow-y:auto}
+.content{flex:1;padding:20px;padding-bottom:100px;overflow-y:auto}
 .card{background:#fff;border-radius:var(--radius-lg);box-shadow:0 2px 12px rgba(0,0,0,.08);padding:20px;margin-bottom:16px}
 .metric-row{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid #F0F0F0}
 .metric-row:last-child{border-bottom:none}
@@ -62,13 +59,29 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .chat-bubble{max-width:85%;padding:14px 18px;border-radius:18px;margin-bottom:12px;font-size:15px;line-height:1.5}
 .chat-bubble.bot{background:var(--gray);border-bottom-left-radius:4px;align-self:flex-start}
 .chat-bubble.user{background:var(--blue);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
-.chat-input-row{display:flex;align-items:center;gap:8px;padding:12px 20px;border-top:1px solid #E0E0E0;background:#fff;position:fixed;bottom:0;left:0;right:0}
+.chat-input-row{display:flex;align-items:center;gap:8px;padding:12px 20px;border-top:1px solid #E0E0E0;background:#fff;position:fixed;bottom:0;left:0;right:0;z-index:200}
 .chat-input{flex:1;padding:12px 16px;border:1px solid #E0E0E0;border-radius:24px;font-size:15px;outline:none}
 .chat-send{width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;margin-right:12px}
-.avatar img{width:100%;height:100%}
-.splash-logo{width:120px;height:120px;margin:0 auto}
-.upload-icon{width:100px;height:100px;margin:0 auto 24px;opacity:.6}
+.tab-bar{display:flex;background:var(--red);padding:12px 0 calc(12px + env(safe-area-inset-bottom));position:fixed;bottom:0;left:0;right:0;z-index:100;border-radius:24px 24px 0 0;justify-content:space-around;align-items:center}
+.tab-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;color:rgba(255,255,255,.7);transition:all .2s;font-size:10px;padding:0 8px}
+.tab-item.active{color:#fff}
+.tab-item .tab-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.15);transition:all .2s}
+.tab-item.active .tab-icon{background:rgba(255,255,255,.3)}
+.tab-item svg{width:22px;height:22px}
+.tab-item .tab-icon.center{width:52px;height:52px;background:rgba(255,255,255,.25);margin-top:-20px}
+.splash-bg{background:linear-gradient(180deg,#1565C0 0%,#42A5F5 100%);min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;border-radius:0 0 40px 40px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.splash-bg .bg-icon{position:absolute;opacity:.15;color:#fff}
+.welcome-bg{background:linear-gradient(180deg,#1565C0 0%,#42A5F5 100%);min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;border-radius:0 0 40px 40px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.welcome-bg .bg-icon{position:absolute;opacity:.15}
+.settings-item{display:flex;align-items:center;padding:16px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.settings-item .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-right:14px;font-size:18px;background:var(--gray)}
+.settings-item .label{flex:1;font-size:15px}
+.settings-item .arrow{color:var(--gray-dark);font-size:18px}
+.settings-item .value{color:var(--text-light);font-size:14px;margin-right:8px}
+.toggle{width:48px;height:28px;border-radius:14px;background:#BDBDBD;position:relative;cursor:pointer;transition:background .3s}
+.toggle.on{background:var(--red)}
+.toggle::after{content:'';width:24px;height:24px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:transform .3s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle.on::after{transform:translateX(20px)}
 .loading-dots{display:flex;gap:8px;justify-content:center;margin:20px 0}
 .loading-dots span{width:12px;height:12px;border-radius:50%;background:var(--red);opacity:.3;animation:dotPulse 1.2s ease infinite}
 .loading-dots span:nth-child(2){animation-delay:.2s}
@@ -76,795 +89,944 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .loading-dots span:nth-child(4){animation-delay:.6s}
 .loading-dots span:nth-child(5){animation-delay:.8s}
 @keyframes dotPulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
-.settings-item{display:flex;align-items:center;padding:16px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
-.settings-item .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-right:14px;font-size:18px;background:var(--gray)}
-.settings-item .label{flex:1;font-size:15px}
-.settings-item .arrow{color:var(--gray-dark);font-size:18px}
-.toggle{width:48px;height:28px;border-radius:14px;background:#BDBDBD;position:relative;cursor:pointer;transition:background .3s}
-.toggle.on{background:var(--red)}
-.toggle::after{content:'';width:24px;height:24px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:transform .3s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.toggle.on::after{transform:translateX(20px)}
-.welcome-bg{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-light) 100%);min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;border-radius:0 0 30px 30px;color:#fff;text-align:center}
-.community-card{border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.community-card img{width:100%;height:160px;object-fit:cover}
+.paywall-header{background:linear-gradient(135deg,#1A237E,#283593);padding:24px 20px;text-align:center;color:#fff;border-radius:0 0 24px 24px}
+.price-card{border:2px solid #E0E0E0;border-radius:var(--radius);padding:16px 12px;text-align:center;flex:1;cursor:pointer;transition:all .2s;position:relative}
+.price-card.popular{border-color:var(--red);background:rgba(229,57,53,.04)}
+.price-card .badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.checkup-item{display:flex;align-items:center;padding:16px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.checkup-item .emoji{font-size:28px;margin-right:14px}
+.checkup-item .info{flex:1}
+.checkup-item .info h4{font-size:15px;font-weight:600;margin-bottom:2px}
+.checkup-item .info p{font-size:13px;color:var(--text-light);line-height:1.3}
+.wiki-item{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.wiki-item span{font-size:15px}
+.community-card{border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer}
+.community-card .img{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px}
 .community-card .info{padding:12px}
 .community-card .info h4{font-size:14px;margin-bottom:4px}
 .community-card .info p{font-size:12px;color:var(--text-light)}
-.paywall-card{background:linear-gradient(135deg,#1A237E,#283593);border-radius:var(--radius-lg);padding:24px;color:#fff;text-align:center;margin:20px}
-.price-tag{font-size:32px;font-weight:700;margin:16px 0 8px}
-.price-period{font-size:14px;opacity:.7}
+.challenge-card{border-radius:var(--radius-lg);overflow:hidden;margin-bottom:20px;position:relative;height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;cursor:pointer}
+.challenge-card .overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.7));z-index:1}
+.challenge-card .bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.challenge-card .content-z{position:relative;z-index:2}
+.challenge-card .join-btn{background:var(--red);color:#fff;border:none;padding:10px 20px;border-radius:var(--radius);font-weight:600;font-size:14px;cursor:pointer;margin-top:8px;display:inline-block}
+.doc-item{display:flex;align-items:center;padding:16px 0;border-bottom:1px solid #F0F0F0;cursor:pointer}
+.doc-item .doc-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-right:14px;color:var(--text-light)}
+.doc-item .doc-label{flex:1;font-size:15px}
+.doc-item .doc-arrow{color:var(--gray-dark)}
+.profile-banner{background:linear-gradient(135deg,#E53935,#AD1457);border-radius:var(--radius-lg);padding:20px;color:#fff;margin-bottom:20px;cursor:pointer}
+.bio-tab{display:inline-block;padding:8px 16px;border-radius:20px;font-size:14px;cursor:pointer;border:1px solid #E0E0E0;margin-right:8px;transition:all .2s}
+.bio-tab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.search-bar{width:100%;padding:12px 16px;border:1px solid #E0E0E0;border-radius:12px;font-size:15px;outline:none;margin-bottom:16px}
+.upload-zone{border:2px dashed #E0E0E0;border-radius:var(--radius-lg);padding:40px 20px;text-align:center;cursor:pointer;transition:border-color .2s}
+.upload-zone:active{border-color:var(--red)}
 </style>
 </head>
 <body>
 
-<!-- SCREEN 1: SPLASH -->
+<!-- SCREEN: SPLASH -->
 <div class="screen active" id="splash">
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff 0%,#FAFAFA 100%)">
-    <div class="splash-logo" style="margin-bottom:24px">
-      <svg viewBox="0 0 120 120" fill="none">
-        <path d="M60 10C60 10 20 50 20 75C20 97 38 110 60 110C82 110 100 97 100 75C100 50 60 10 60 10Z" fill="#E53935"/>
-        <path d="M60 25C60 25 30 55 30 75C30 91 43 102 60 102C77 102 90 91 90 75C90 55 60 25 60 25Z" fill="#EF5350" opacity="0.6"/>
-        <path d="M50 68H56V56H68V68H74V80H68V92H56V80H50V68Z" fill="white" rx="4"/>
-      </svg>
-    </div>
-    <div style="font-size:28px;font-weight:700;color:var(--text)">analyza<span style="color:var(--red)">.io</span></div>
-    <div style="font-size:14px;color:var(--text-light);margin-top:8px">Расшифровка анализов с помощью ИИ</div>
-  </div>
+<div class="splash-bg" style="min-height:100vh;border-radius:0">
+<svg class="bg-icon" style="top:8%;left:10%;width:80px;height:80px" viewBox="0 0 100 100" fill="white"><path d="M30 80C30 80 15 65 15 50C15 35 25 25 40 25L45 20C45 20 50 15 55 20L60 25C75 25 85 35 85 50C85 65 70 80 70 80L65 85C65 85 60 90 55 85L50 80L45 85C45 85 40 90 35 85L30 80Z"/><path d="M35 55C35 55 40 45 50 45C60 45 65 55 65 55" stroke="rgba(0,0,0,.1)" stroke-width="2" fill="none"/></svg>
+<svg class="bg-icon" style="top:15%;right:8%;width:60px;height:60px" viewBox="0 0 100 100" fill="white"><path d="M50 10C50 10 90 40 90 60C90 80 72 95 50 95C28 95 10 80 10 60C10 40 50 10 50 10Z"/></svg>
+<svg class="bg-icon" style="top:35%;left:5%;width:50px;height:50px" viewBox="0 0 100 100" fill="white"><path d="M50 10L61 39H91L67 56L78 85L50 68L22 85L33 56L9 39H39Z"/></svg>
+<svg class="bg-icon" style="top:5%;left:45%;width:70px;height:70px" viewBox="0 0 100 100" fill="white"><path d="M20 30H80V90H20V30ZM30 20H70V30H30V20Z"/><line x1="35" y1="50" x2="65" y2="50" stroke="rgba(0,0,0,.1)" stroke-width="4"/><line x1="35" y1="65" x2="65" y2="65" stroke="rgba(0,0,0,.1)" stroke-width="4"/></svg>
+<svg class="bg-icon" style="bottom:25%;right:5%;width:65px;height:65px" viewBox="0 0 100 100" fill="white"><ellipse cx="50" cy="55" rx="35" ry="30"/><ellipse cx="50" cy="40" rx="20" ry="15"/></svg>
+<svg class="bg-icon" style="bottom:10%;left:15%;width:55px;height:55px" viewBox="0 0 100 100" fill="white"><path d="M50 10C50 10 90 40 90 60C90 80 72 95 50 95C28 95 10 80 10 60C10 40 50 10 50 10Z"/></svg>
+<div style="position:relative;z-index:2">
+<div style="width:120px;height:120px;margin:0 auto 20px">
+<svg viewBox="0 0 120 140" fill="none"><path d="M60 5C60 5 15 55 15 85C15 110 35 130 60 130C85 130 105 110 105 85C105 55 60 5 60 5Z" fill="#E53935"/><rect x="42" y="65" width="36" height="36" rx="6" fill="white"/><rect x="55" y="58" width="10" height="50" rx="3" fill="white"/><rect x="38" y="78" width="44" height="10" rx="3" fill="white"/></svg>
+</div>
+<h1 style="font-size:28px;font-weight:700;margin-bottom:8px">Привет, я <span style="color:#FFD54F">analyza.io</span></h1>
+<p style="font-size:15px;opacity:.85;line-height:1.5">Приложения №1 для мониторинга<br>здоровья и улучшения самочувствия</p>
+</div>
+</div>
 </div>
 
-<!-- SCREEN 2: WELCOME -->
+<!-- SCREEN: WELCOME -->
 <div class="screen" id="welcome">
-  <div class="welcome-bg">
-    <div class="splash-logo" style="margin-bottom:20px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))">
-      <svg viewBox="0 0 120 120" fill="none">
-        <path d="M60 10C60 10 20 50 20 75C20 97 38 110 60 110C82 110 100 97 100 75C100 50 60 10 60 10Z" fill="#E53935"/>
-        <path d="M50 68H56V56H68V68H74V80H68V92H56V80H50V68Z" fill="white"/>
-      </svg>
-    </div>
-    <h1 style="font-size:26px;font-weight:700;margin-bottom:8px">Привет, я <span style="color:#FFD54F">analyza.io</span></h1>
-    <p style="font-size:15px;opacity:.9;line-height:1.5">Приложения №1 для мониторинга<br>здоровья и улучшения самочувствия</p>
-  </div>
-  <div style="padding:24px 20px;flex:1;display:flex;flex-direction:column;gap:12px;justify-content:flex-end;padding-bottom:40px">
-    <button class="btn btn-primary" onclick="showScreen('onboarding1')">Создать нового пользователя</button>
-    <button class="btn btn-outline" onclick="showScreen('onboarding1')">Войти существующим пользователем</button>
-  </div>
+<div class="welcome-bg">
+<svg class="bg-icon" style="top:8%;left:10%;width:80px" viewBox="0 0 100 100" fill="white"><path d="M30 80C30 80 15 65 15 50C15 35 25 25 40 25L45 20C45 20 50 15 55 20L60 25C75 25 85 35 85 50C85 65 70 80 70 80L65 85C65 85 60 90 55 85L50 80L45 85C45 85 40 90 35 85L30 80Z"/></svg>
+<svg class="bg-icon" style="top:15%;right:8%;width:60px" viewBox="0 0 100 100" fill="white"><path d="M50 10C50 10 90 40 90 60C90 80 72 95 50 95C28 95 10 80 10 60C10 40 50 10 50 10Z"/></svg>
+<svg class="bg-icon" style="top:5%;left:45%;width:70px" viewBox="0 0 100 100" fill="white"><path d="M20 30H80V90H20V30ZM30 20H70V30H30V20Z"/></svg>
+<svg class="bg-icon" style="bottom:15%;right:10%;width:50px" viewBox="0 0 100 100" fill="white"><ellipse cx="50" cy="55" rx="35" ry="30"/><ellipse cx="50" cy="40" rx="20" ry="15"/></svg>
+<svg class="bg-icon" style="bottom:5%;left:15%;width:55px" viewBox="0 0 100 100" fill="white"><path d="M50 10C50 10 90 40 90 60C90 80 72 95 50 95C28 95 10 80 10 60C10 40 50 10 50 10Z"/></svg>
+<div style="position:relative;z-index:2">
+<div style="width:120px;height:120px;margin:0 auto 20px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))">
+<svg viewBox="0 0 120 140" fill="none"><path d="M60 5C60 5 15 55 15 85C15 110 35 130 60 130C85 130 105 110 105 85C105 55 60 5 60 5Z" fill="#E53935"/><rect x="42" y="65" width="36" height="36" rx="6" fill="white"/><rect x="55" y="58" width="10" height="50" rx="3" fill="white"/><rect x="38" y="78" width="44" height="10" rx="3" fill="white"/></svg>
+</div>
+<h1 style="font-size:26px;font-weight:700;margin-bottom:8px">Привет, я <span style="color:#FFD54F">analyza.io</span></h1>
+<p style="font-size:15px;opacity:.9;line-height:1.5">Приложения №1 для мониторинга<br>здоровья и улучшения самочувствия</p>
+</div>
+</div>
+<div style="padding:24px 20px;flex:1;display:flex;flex-direction:column;gap:12px;justify-content:flex-end;padding-bottom:40px">
+<div style="text-align:center;font-size:12px;color:var(--text-light);margin-bottom:8px">Уже есть аккаунт? <span style="color:var(--red);cursor:pointer" onclick="showScreen('onboarding1')">Войдите</span></div>
+<button class="btn btn-primary" onclick="showScreen('onboarding1')">Создать нового пользователя</button>
+<button class="btn btn-outline" onclick="showScreen('onboarding1')">Войти существующим пользователем</button>
+<div style="text-align:center;font-size:11px;color:var(--text-light);margin-top:8px;line-height:1.4">Выбирая одно из вариантов,<br>Вы соглашаетесь с Условиями использования<br>и Политикой конфиденциальности</div>
+</div>
 </div>
 
-<!-- SCREEN 3: ONBOARDING - GOAL -->
+<!-- SCREEN: ONBOARDING 1 - GOAL -->
 <div class="screen" id="onboarding1">
-  <div class="header">
-    <div class="logo-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 5 13 5 20C5 27 10 30 16 30C22 30 27 27 27 20C27 13 16 2 16 2Z" fill="#E53935"/><path d="M13 18H15V14H19V18H21V22H19V26H15V22H13V18Z" fill="white"/></svg></div>
-    <div style="flex:1;margin:0 12px"><div class="progress-bar"><div class="fill" style="width:33%"></div></div></div>
-    <div style="font-size:20px;cursor:pointer" onclick="showScreen('onboarding2')">⊞</div>
-  </div>
-  <div class="content">
-    <h2 style="font-size:24px;font-weight:700;margin-bottom:24px;line-height:1.3">Какова ваша главная цель прямо сейчас?</h2>
-    <div class="option-card" onclick="selectOption(this,'onboarding2')">Лучше понять свое текущее состояние здоровья</div>
-    <div class="option-card" onclick="selectOption(this,'onboarding2')">Проверить, опасны ли мои недавние симптомы</div>
-    <div class="option-card" onclick="selectOption(this,'onboarding2')">Просто следить и оставаться под контролем</div>
-  </div>
+<div class="header">
+<div class="logo-icon"><svg viewBox="0 0 32 38" fill="none"><path d="M16 1C16 1 3 14 3 22C3 30 9 35 16 35C23 35 29 30 29 22C29 14 16 1 16 1Z" fill="#E53935"/><rect x="11" y="17" width="10" height="10" rx="2" fill="white"/><rect x="14.5" y="15" width="3" height="14" rx="1" fill="white"/><rect x="10" y="20.5" width="12" height="3" rx="1" fill="white"/></svg></div>
+<div style="flex:1;margin:0 12px"><div class="progress-bar"><div class="fill" style="width:33%"></div></div></div>
+<div style="font-size:20px;cursor:pointer;color:var(--red)" onclick="showScreen('onboarding2')">⊞</div>
+</div>
+<div class="content">
+<h2 style="font-size:24px;font-weight:700;margin-bottom:24px;line-height:1.3">Какова ваша главная цель прямо сейчас?</h2>
+<div class="option-card" onclick="selectOption(this,'onboarding2')">Лучше понять свое текущее состояние здоровья</div>
+<div class="option-card" onclick="selectOption(this,'onboarding2')">Проверить, опасны ли мои недавние симптомы</div>
+<div class="option-card" onclick="selectOption(this,'onboarding2')">Просто следить и оставаться под контролем</div>
+</div>
 </div>
 
-<!-- SCREEN 4: ONBOARDING - MEDICATIONS -->
+<!-- SCREEN: ONBOARDING 2 - MEDICATIONS -->
 <div class="screen" id="onboarding2">
-  <div class="header">
-    <div class="logo-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 5 13 5 20C5 27 10 30 16 30C22 30 27 27 27 20C27 13 16 2 16 2Z" fill="#E53935"/><path d="M13 18H15V14H19V18H21V22H19V26H15V22H13V18Z" fill="white"/></svg></div>
-    <div style="flex:1;margin:0 12px"><div class="progress-bar"><div class="fill" style="width:66%"></div></div></div>
-    <div style="font-size:20px;cursor:pointer" onclick="showScreen('privacy')">⊞</div>
-  </div>
-  <div class="content">
-    <h2 style="font-size:24px;font-weight:700;margin-bottom:24px;line-height:1.3">Принимаете ли вы какие-либо лекарства регулярно?</h2>
-    <div class="option-card" onclick="selectOption(this,'privacy')">Да, постоянно (например, гормоны, давление и т.д.)</div>
-    <div class="option-card" onclick="selectOption(this,'privacy')">Иногда, в зависимости от состояния</div>
-    <div class="option-card" onclick="selectOption(this,'privacy')">Нет, я не принимаю никаких лекарств</div>
-  </div>
+<div class="header">
+<div class="logo-icon"><svg viewBox="0 0 32 38" fill="none"><path d="M16 1C16 1 3 14 3 22C3 30 9 35 16 35C23 35 29 30 29 22C29 14 16 1 16 1Z" fill="#E53935"/><rect x="11" y="17" width="10" height="10" rx="2" fill="white"/><rect x="14.5" y="15" width="3" height="14" rx="1" fill="white"/><rect x="10" y="20.5" width="12" height="3" rx="1" fill="white"/></svg></div>
+<div style="flex:1;margin:0 12px"><div class="progress-bar"><div class="fill" style="width:66%"></div></div></div>
+<div style="font-size:20px;cursor:pointer;color:var(--red)" onclick="showScreen('onboarding3')">⊞</div>
+</div>
+<div class="content">
+<h2 style="font-size:24px;font-weight:700;margin-bottom:24px;line-height:1.3">Принимаете ли вы какие-либо лекарства регулярно?</h2>
+<div class="option-card" onclick="selectOption(this,'onboarding3')">Да, постоянно (например, гормоны, давление и т.д.)</div>
+<div class="option-card" onclick="selectOption(this,'onboarding3')">Иногда, в зависимости от состояния</div>
+<div class="option-card" onclick="selectOption(this,'onboarding3')">Нет, я не принимаю никаких лекарств</div>
+</div>
 </div>
 
-<!-- SCREEN 5: PRIVACY -->
+<!-- SCREEN: ONBOARDING 3 - HEALTH PROBLEMS -->
+<div class="screen" id="onboarding3">
+<div class="header">
+<div class="logo-icon"><svg viewBox="0 0 32 38" fill="none"><path d="M16 1C16 1 3 14 3 22C3 30 9 35 16 35C23 35 29 30 29 22C29 14 16 1 16 1Z" fill="#E53935"/><rect x="11" y="17" width="10" height="10" rx="2" fill="white"/><rect x="14.5" y="15" width="3" height="14" rx="1" fill="white"/><rect x="10" y="20.5" width="12" height="3" rx="1" fill="white"/></svg></div>
+<div style="flex:1;margin:0 12px"><div class="progress-bar"><div class="fill" style="width:100%"></div></div></div>
+<div style="font-size:20px;cursor:pointer;color:var(--red)" onclick="showScreen('privacy')">⊞</div>
+</div>
+<div class="content">
+<h2 style="font-size:24px;font-weight:700;margin-bottom:24px;line-height:1.3">Есть ли у вас какие-либо проблемы со здоровьем сейчас?</h2>
+<div class="option-card" onclick="selectOption(this,'privacy')">Да (различные заболевания, проблемы с психическим здоровьем, плохое самочувствие)</div>
+<div class="option-card" onclick="selectOption(this,'privacy')">Точно не знаю, но хочу это выяснить</div>
+<div class="option-card" onclick="selectOption(this,'privacy')">Нет проблем, и я хочу так и оставить</div>
+</div>
+<div style="text-align:center;padding:0 20px 20px">
+<span style="font-size:12px;color:var(--text-light)">Уже есть аккаунт? <span style="color:var(--red);cursor:pointer" onclick="showScreen('main')">Войти</span></span>
+</div>
+</div>
+
+<!-- SCREEN: PRIVACY -->
 <div class="screen" id="privacy">
-  <div style="text-align:center;padding:40px 20px 20px">
-    <div style="width:80px;height:80px;margin:0 auto 20px;background:#FFEBEE;border-radius:20px;display:flex;align-items:center;justify-content:center">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#E53935"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-    </div>
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:24px">Конфиденциальность</h2>
-  </div>
-  <div style="padding:0 20px;flex:1">
-    <div class="checkbox-row" onclick="toggleCheck(this)">
-      <div class="checkbox"></div>
-      <span style="font-size:14px;line-height:1.5">Я согласен с политикой конфиденциальности и условиями использования.</span>
-    </div>
-    <div class="checkbox-row" onclick="toggleCheck(this)">
-      <div class="checkbox"></div>
-      <span style="font-size:14px;line-height:1.5">Я согласен на обработку моих персональных медицинских данных для предоставления мне доступа к функциям приложения analyza.</span>
-    </div>
-    <div class="checkbox-row" onclick="toggleCheck(this)">
-      <div class="checkbox"></div>
-      <span style="font-size:14px;line-height:1.5">Я разрешаю analyza использовать мои персональные данные для отправки мне предложений о продуктах и услугах.</span>
-    </div>
-    <div style="margin-top:12px;font-size:12px;color:var(--text-light)">* Вы можете отозвать свое согласие в любое время, связавшись с нами по адресу support@analyza.io</div>
-  </div>
-  <div style="padding:20px">
-    <div style="text-align:center;margin-bottom:12px;color:var(--red);font-weight:600;cursor:pointer" onclick="checkAllPrivacy()">Принять все</div>
-    <button class="btn btn-disabled" id="privacyBtn" onclick="showScreen('main')">Продолжить</button>
-  </div>
+<div style="text-align:center;padding:40px 20px 20px">
+<div style="width:80px;height:80px;margin:0 auto 20px;background:#FFEBEE;border-radius:20px;display:flex;align-items:center;justify-content:center">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="#E53935"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+</div>
+<h2 style="font-size:22px;font-weight:700;margin-bottom:24px">Конфиденциальность</h2>
+</div>
+<div style="padding:0 20px;flex:1">
+<div class="checkbox-row" onclick="toggleCheck(this)">
+<div class="checkbox"></div>
+<span style="font-size:14px;line-height:1.5">Я согласен с политикой конфиденциальности и условиями использования.</span>
+</div>
+<div class="checkbox-row" onclick="toggleCheck(this)">
+<div class="checkbox"></div>
+<span style="font-size:14px;line-height:1.5">Я согласен на обработку моих персональных медицинских данных для предоставления мне доступа к функциям приложения analyza. Подробнее см. в Политике конфиденциальности.</span>
+</div>
+<div class="checkbox-row" onclick="toggleCheck(this)">
+<div class="checkbox"></div>
+<span style="font-size:14px;line-height:1.5">Я разрешаю analyza использовать мои персональные данные (за исключением данных о здоровье) для отправки мне предложений о продуктах и услугах по электронной почте, через приложение analyza или маркетинговых партнеров*.</span>
+</div>
+<div style="margin-top:12px;font-size:12px;color:var(--text-light)">* Вы можете отозвать свое согласие в любое время, связавшись с нами по адресу support@analyza.io</div>
+</div>
+<div style="padding:20px">
+<div style="text-align:center;margin-bottom:12px;color:var(--red);font-weight:600;cursor:pointer" onclick="checkAllPrivacy()">Принять все</div>
+<button class="btn btn-primary" id="privacyBtn" onclick="showScreen('paywall')">Продолжить</button>
+</div>
 </div>
 
-<!-- SCREEN 6: MAIN DASHBOARD -->
+<!-- SCREEN: PAYWALL -->
+<div class="screen" id="paywall">
+<div style="position:relative">
+<div style="position:absolute;top:16px;right:16px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;color:#fff;font-size:24px" onclick="showScreen('main')">✕</div>
+<div class="paywall-header" style="padding-top:40px;padding-bottom:30px">
+<h2 style="font-size:24px;font-weight:700;margin-bottom:12px">ПОПРОБУЙТЕ</h2>
+<div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);padding:8px 20px;border-radius:20px">
+<svg width="24" height="28" viewBox="0 0 24 28" fill="none"><path d="M12 1C12 1 2 11 2 17C2 23 7 27 12 27C17 27 22 23 22 17C22 11 12 1 12 1Z" fill="#E53935"/><rect x="8" y="13" width="8" height="8" rx="1.5" fill="white"/><rect x="10.5" y="11.5" width="3" height="11" rx="1" fill="white"/><rect x="7" y="16" width="10" height="3" rx="1" fill="white"/></svg>
+<span style="font-size:16px;font-weight:600">analyza.io плюс</span>
+</div>
+</div>
+</div>
+<div class="content" style="padding-top:24px">
+<div style="display:flex;gap:10px;margin-bottom:24px">
+<div class="price-card" onclick="selectPlan(this)">
+<div style="font-size:16px;font-weight:700">ПРО</div>
+<div style="font-size:12px;color:var(--text-light)">1 месяц</div>
+<div style="font-size:22px;font-weight:700;margin:8px 0">559 ₽</div>
+<div style="font-size:11px;color:var(--text-light)">129 ₽ / неделя</div>
+<div style="font-size:11px;color:var(--text-light)">Отмените в любое время</div>
+</div>
+<div class="price-card popular" onclick="selectPlan(this)">
+<div class="badge">популярный</div>
+<div style="font-size:16px;font-weight:700;color:var(--red)">ПРО</div>
+<div style="font-size:12px;color:var(--text-light)">12 месяцев</div>
+<div style="font-size:22px;font-weight:700;color:var(--red);margin:8px 0">2 490 ₽</div>
+<div style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--green)">✓ Скидка 63%</div>
+<div style="font-size:11px;color:var(--text-light);margin-top:4px">48 ₽ / неделя</div>
+<div style="font-size:11px;color:var(--text-light)">Отмените в любое время</div>
+</div>
+<div class="price-card" onclick="selectPlan(this)">
+<div style="font-size:16px;font-weight:700">ПЛЮС</div>
+<div style="font-size:12px;color:var(--text-light)">Навсегда</div>
+<div style="font-size:22px;font-weight:700;margin:8px 0">3 990 ₽</div>
+<div style="font-size:11px;color:var(--text-light)">Платите 1 раз</div>
+<div style="font-size:11px;color:var(--text-light)">Доступ ко всем функциям навсегда</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;margin-bottom:20px">
+<div><div style="font-size:15px;font-weight:600">Еще не уверены?</div><div style="font-size:13px;color:var(--text-light)">Активируйте пробный период 1-год</div></div>
+<div class="toggle" onclick="this.classList.toggle('on')"></div>
+</div>
+<button class="btn btn-disabled" id="paywallBtn" onclick="showScreen('main')">Продолжить</button>
+<div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px;font-size:13px;color:var(--text-light)">
+<span style="color:var(--green)">✓</span> 14-дневная гарантия возврата денег
+</div>
+</div>
+</div>
+
+<!-- SCREEN: MAIN DASHBOARD (Monitor) -->
 <div class="screen" id="main">
-  <div style="padding:20px 20px 0">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-      <div>
-        <div style="font-size:14px;color:var(--text-light)">Добро пожаловать 👋</div>
-        <div style="font-size:20px;font-weight:700;margin-top:4px">analyza.io</div>
-      </div>
-      <div style="width:40px;height:40px;border-radius:50%;background:var(--gray);display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="showScreen('profile')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#757575"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-      </div>
-    </div>
-  </div>
-  <div class="content" style="padding-top:0">
-    <!-- Upload Card -->
-    <div class="card" style="background:linear-gradient(135deg,#E53935,#C62828);color:#fff;text-align:center;padding:30px 20px;cursor:pointer" onclick="showScreen('upload')">
-      <div style="font-size:48px;margin-bottom:12px">📋</div>
-      <h3 style="font-size:18px;font-weight:700;margin-bottom:8px">Загрузить анализы</h3>
-      <p style="font-size:14px;opacity:.9">Загрузите PDF или фото для расшифровки ИИ</p>
-    </div>
-    <!-- Last Results -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 0 12px">
-      <h3 style="font-size:18px;font-weight:600">Последние результаты</h3>
-      <span style="font-size:14px;color:var(--red);cursor:pointer">Все →</span>
-    </div>
-    <div class="card" id="lastResults" style="display:none">
-      <div class="metric-row">
-        <div class="metric-icon orange">🩸</div>
-        <div class="metric-info">
-          <div class="metric-name">Кровяное давление</div>
-          <div class="metric-value">200/100 мм рт.ст.</div>
-        </div>
-        <div class="metric-status warn"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon green">⚖️</div>
-        <div class="metric-info">
-          <div class="metric-name">Вес, усредненный</div>
-          <div class="metric-value">71.0 кг</div>
-        </div>
-        <div class="metric-status good"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon red">🍬</div>
-        <div class="metric-info">
-          <div class="metric-name">Глюкоза в крови</div>
-          <div class="metric-value">164.00 мг/дл</div>
-        </div>
-        <div class="metric-status bad"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon green">📊</div>
-        <div class="metric-info">
-          <div class="metric-name">Индекс массы тела</div>
-          <div class="metric-value">21.01 кг/м²</div>
-        </div>
-        <div class="metric-status good"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon green">💓</div>
-        <div class="metric-info">
-          <div class="metric-name">Пульс, усредненный</div>
-          <div class="metric-value">60 уд/мин</div>
-        </div>
-        <div class="metric-status good"></div>
-      </div>
-    </div>
-    <div id="noResults" class="card" style="text-align:center;padding:40px 20px;color:var(--text-light)">
-      <div style="font-size:48px;margin-bottom:12px">📝</div>
-      <p>У вас пока нет результатов.<br>Загрузите анализы, чтобы начать!</p>
-    </div>
-    <!-- Quick Actions -->
-    <div style="display:flex;gap:12px;margin-top:16px">
-      <div class="card" style="flex:1;text-align:center;cursor:pointer;padding:16px" onclick="showScreen('community')">
-        <div style="font-size:28px;margin-bottom:8px">📰</div>
-        <div style="font-size:13px;font-weight:600">Сообщество</div>
-      </div>
-      <div class="card" style="flex:1;text-align:center;cursor:pointer;padding:16px" onclick="showScreen('support')">
-        <div style="font-size:28px;margin-bottom:8px">💬</div>
-        <div style="font-size:13px;font-weight:600">Поддержка</div>
-      </div>
-    </div>
-  </div>
-  <!-- Tab Bar -->
-  <div class="tab-bar">
-    <div class="tab-item active" onclick="switchTab(this,'main')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      <span>Главная</span>
-    </div>
-    <div class="tab-item" onclick="switchTab(this,'upload')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Анализы</span>
-    </div>
-    <div class="tab-item" onclick="switchTab(this,'community')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-      <span>Статьи</span>
-    </div>
-    <div class="tab-item" onclick="switchTab(this,'profile')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-      <span>Профиль</span>
-    </div>
-  </div>
+<div style="padding:20px 20px 0">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+<div style="font-size:14px;color:var(--red);cursor:pointer" onclick="showScreen('paywall')">⊕ Перейти на ПЛЮС</div>
+</div>
+</div>
+<div class="content" style="padding-top:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:60vh">
+<div style="width:200px;height:200px;margin-bottom:24px">
+<svg viewBox="0 0 200 200" fill="none">
+<circle cx="80" cy="80" r="55" fill="#4A90D9"/>
+<path d="M80 45C80 45 55 35 55 55C55 65 62 72 72 72L76 68C76 68 80 64 84 68L88 72C98 72 105 65 105 55C105 35 80 45 80 45Z" fill="white" opacity=".5"/>
+<circle cx="130" cy="130" r="55" fill="#E57373"/>
+<path d="M130 95C130 95 105 85 105 105C105 115 112 122 122 122L126 118C126 118 130 114 134 118L138 122C148 122 155 115 155 105C155 85 130 95 130 95Z" fill="white" opacity=".5"/>
+<path d="M110 75C120 65 140 70 145 85" stroke="#DAA520" stroke-width="6" fill="none" stroke-linecap="round" marker-end="url(#arrow1)"/>
+<path d="M90 135C80 145 60 140 55 125" stroke="#DAA520" stroke-width="6" fill="none" stroke-linecap="round" marker-end="url(#arrow2)"/>
+</svg>
+</div>
+<h3 style="font-size:18px;font-weight:600;margin-bottom:8px">Указать пол и возраст</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.4;margin-bottom:4px">Пожалуйста, обновите информацию<br>о поле и возрасте, чтобы продолжить</p>
+</div>
+<div class="tab-bar" id="mainTabBar">
+<div class="tab-item" onclick="switchTab(this,'profileView')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+<span>Вы</span>
+</div>
+<div class="tab-item active" onclick="switchTab(this,'main')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></div>
+<span>Монитор</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'upload')">
+<div class="tab-icon center"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+<span></span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'assistant')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+<span>Ассистент</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'more')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+<span>Еще</span>
+</div>
+</div>
 </div>
 
-<!-- SCREEN 7: UPLOAD -->
+<!-- SCREEN: PROFILE VIEW / Вы -->
+<div class="screen" id="profileView">
+<div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between">
+<span style="color:var(--red);cursor:pointer" onclick="showScreen('profileEdit')">Отмена</span>
+<span style="font-weight:600">Профиль</span>
+<span style="width:50px"></span>
+</div>
+<div class="content">
+<div style="text-align:center;margin-bottom:24px">
+<div style="width:80px;height:80px;margin:0 auto 12px;background:#E3F2FD;border-radius:50%;display:flex;align-items:center;justify-content:center">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="#42A5F5"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+</div>
+<input style="width:100%;padding:12px;border:1px solid #E0E0E0;border-radius:10px;text-align:center;font-size:16px;outline:none" placeholder="Введите имя или никнейм">
+</div>
+<div style="padding:16px 0;border-bottom:1px solid #F0F0F0;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:15px">Возраст</span>
+<span style="color:var(--text-light)">Не указан</span>
+</div>
+<div style="padding:16px 0;border-bottom:1px solid #F0F0F0;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:15px">Пол</span>
+<span style="color:var(--text-light)">Не указан</span>
+</div>
+<div style="padding:16px 0;border-bottom:1px solid #F0F0F0;display:flex;justify-content:space-between;align-items:center">
+<span style="font-size:15px">Это Я</span>
+</div>
+<div style="padding:16px 0;cursor:pointer" onclick="showScreen('deleteData')">
+<span style="font-size:15px;color:var(--red)">Удалить</span>
+</div>
+</div>
+<div class="tab-bar">
+<div class="tab-item active" onclick="switchTab(this,'profileView')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+<span>Вы</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'main')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></div>
+<span>Монитор</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'upload')">
+<div class="tab-icon center"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+<span></span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'assistant')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+<span>Ассистент</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'more')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+<span>Еще</span>
+</div>
+</div>
+</div>
+
+<!-- SCREEN: BIOMARKERS -->
+<div class="screen" id="biomarkers">
+<div class="header">
+<div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Биомаркеры</div>
+<div class="action"></div>
+</div>
+<div style="padding:0 20px;display:flex;gap:8px;margin-bottom:16px">
+<div class="bio-tab active" onclick="switchBioTab(this,'bio')">Биомаркеры</div>
+<div class="bio-tab" onclick="switchBioTab(this,'docs')">Документы</div>
+</div>
+<div class="content" style="padding-top:0;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh">
+<div style="margin-bottom:20px">
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="10" y="20" width="60" height="45" rx="4" stroke="#E0E0E0" stroke-width="2" fill="#FAFAFA"/><line x1="20" y1="35" x2="60" y2="35" stroke="#E0E0E0" stroke-width="2"/><line x1="20" y1="45" x2="50" y2="45" stroke="#E0E0E0" stroke-width="2"/><line x1="20" y1="55" x2="40" y2="55" stroke="#E0E0E0" stroke-width="2"/></svg>
+</div>
+<h3 style="font-size:18px;font-weight:600;margin-bottom:8px">Здесь будет динамика биомаркеров</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.4">Чтобы ее увидеть, загрузите<br>несколько анализов за разные даты</p>
+</div>
+</div>
+
+<!-- SCREEN: UPLOAD -->
 <div class="screen" id="upload">
-  <div class="header">
-    <div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Загрузка анализов</div>
-    <div class="action"></div>
-  </div>
-  <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
-    <div class="upload-icon">
-      <svg viewBox="0 0 100 100" fill="none">
-        <rect x="25" y="10" width="50" height="65" rx="4" stroke="#9E9E9E" stroke-width="2" fill="#F5F5F5"/>
-        <line x1="35" y1="30" x2="65" y2="30" stroke="#BDBDBD" stroke-width="2"/>
-        <line x1="35" y1="40" x2="65" y2="40" stroke="#BDBDBD" stroke-width="2"/>
-        <line x1="35" y1="50" x2="55" y2="50" stroke="#BDBDBD" stroke-width="2"/>
-        <circle cx="65" cy="65" r="18" fill="#4CAF50" stroke="white" stroke-width="3"/>
-        <path d="M58 65L63 70L73 60" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.3">Загрузите свои результаты анализов</h2>
-    <p style="font-size:15px;color:var(--text-light);margin-bottom:32px;line-height:1.5">и analyza создаст отчет о состоянии вашего здоровья</p>
-    <button class="btn btn-primary" style="margin-bottom:12px" onclick="handleUpload('pdf')">
-      <span class="btn-icon">📄</span> Загрузить PDF
-    </button>
-    <button class="btn btn-primary" onclick="handleUpload('photo')">
-      <span class="btn-icon">📷</span> Загрузить фото
-    </button>
-  </div>
+<div class="header">
+<div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Загрузка анализов</div>
+<div class="action"></div>
+</div>
+<div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+<div style="width:100px;height:100px;margin-bottom:24px;opacity:.6">
+<svg viewBox="0 0 100 100" fill="none">
+<rect x="25" y="10" width="50" height="65" rx="4" stroke="#9E9E9E" stroke-width="2" fill="#F5F5F5"/>
+<line x1="35" y1="30" x2="65" y2="30" stroke="#BDBDBD" stroke-width="2"/>
+<line x1="35" y1="40" x2="65" y2="40" stroke="#BDBDBD" stroke-width="2"/>
+<line x1="35" y1="50" x2="55" y2="50" stroke="#BDBDBD" stroke-width="2"/>
+<circle cx="65" cy="65" r="18" fill="#4CAF50" stroke="white" stroke-width="3"/>
+<path d="M58 65L63 70L73 60" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>
+</div>
+<h2 style="font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.3">Загрузите свои результаты анализов</h2>
+<p style="font-size:15px;color:var(--text-light);margin-bottom:32px;line-height:1.5">и analyza создаст отчет о состоянии вашего здоровья</p>
+<button class="btn btn-primary" style="margin-bottom:12px" onclick="handleUpload('pdf')">
+<span class="btn-icon">📄</span> Загрузить PDF
+</button>
+<button class="btn btn-primary" onclick="handleUpload('photo')">
+<span class="btn-icon">📷</span> Загрузить фото
+</button>
+</div>
+<div class="tab-bar">
+<div class="tab-item" onclick="switchTab(this,'profileView')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+<span>Вы</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'main')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></div>
+<span>Монитор</span>
+</div>
+<div class="tab-item active" onclick="switchTab(this,'upload')">
+<div class="tab-icon center"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+<span></span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'assistant')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+<span>Ассистент</span>
+</div>
+<div class="tab-item" onclick="switchTab(this,'more')">
+<div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+<span>Еще</span>
+</div>
+</div>
 </div>
 
-<!-- SCREEN 8: FILE ACCEPTED -->
+<!-- SCREEN: FILE ACCEPTED -->
 <div class="screen" id="fileAccepted">
-  <div class="header">
-    <div class="logo-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 5 13 5 20C5 27 10 30 16 30C22 30 27 27 27 20C27 13 16 2 16 2Z" fill="#E53935"/><path d="M13 18H15V14H19V18H21V22H19V26H15V22H13V18Z" fill="white"/></svg></div>
-    <div style="flex:1"></div>
-    <div class="action"></div>
-  </div>
-  <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
-    <div style="width:100px;height:100px;margin-bottom:24px">
-      <svg viewBox="0 0 100 100" fill="none">
-        <rect x="25" y="10" width="50" height="65" rx="4" stroke="#9E9E9E" stroke-width="2" fill="#F5F5F5"/>
-        <line x1="35" y1="30" x2="65" y2="30" stroke="#BDBDBD" stroke-width="2"/>
-        <line x1="35" y1="40" x2="65" y2="40" stroke="#BDBDBD" stroke-width="2"/>
-        <circle cx="65" cy="65" r="18" fill="#4CAF50" stroke="white" stroke-width="3"/>
-        <path d="M58 65L63 70L73 60" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <h2 style="font-size:24px;font-weight:700;margin-bottom:8px">Файл принят</h2>
-    <p style="font-size:16px;color:var(--text-light)">ИИ начинает обработку</p>
-  </div>
+<div class="header">
+<div class="logo-icon"><svg viewBox="0 0 32 38" fill="none"><path d="M16 1C16 1 3 14 3 22C3 30 9 35 16 35C23 35 29 30 29 22C29 14 16 1 16 1Z" fill="#E53935"/><rect x="11" y="17" width="10" height="10" rx="2" fill="white"/><rect x="14.5" y="15" width="3" height="14" rx="1" fill="white"/><rect x="10" y="20.5" width="12" height="3" rx="1" fill="white"/></svg></div>
+<div style="flex:1"></div>
+</div>
+<div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+<div style="width:100px;height:100px;margin-bottom:24px">
+<svg viewBox="0 0 100 100" fill="none"><rect x="25" y="10" width="50" height="65" rx="4" stroke="#9E9E9E" stroke-width="2" fill="#F5F5F5"/><line x1="35" y1="30" x2="65" y2="30" stroke="#BDBDBD" stroke-width="2"/><line x1="35" y1="40" x2="65" y2="40" stroke="#BDBDBD" stroke-width="2"/><circle cx="65" cy="65" r="18" fill="#4CAF50" stroke="white" stroke-width="3"/><path d="M58 65L63 70L73 60" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+</div>
+<h2 style="font-size:24px;font-weight:700;margin-bottom:8px">Файл принят</h2>
+<p style="font-size:16px;color:var(--text-light)">ИИ начинает обработку</p>
+</div>
 </div>
 
-<!-- SCREEN 9: AI PROCESSING -->
+<!-- SCREEN: AI PROCESSING -->
 <div class="screen" id="processing">
-  <div class="header">
-    <div class="logo-icon"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2C16 2 5 13 5 20C5 27 10 30 16 30C22 30 27 27 27 20C27 13 16 2 16 2Z" fill="#E53935"/><path d="M13 18H15V14H19V18H21V22H19V26H15V22H13V18Z" fill="white"/></svg></div>
-    <div style="flex:1"></div>
-    <div class="action"></div>
-  </div>
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff 0%,#E3F2FD 50%,#fff 100%);text-align:center;padding:20px">
-    <div style="width:120px;height:120px;margin-bottom:24px;position:relative">
-      <svg viewBox="0 0 120 120" fill="none">
-        <circle cx="60" cy="60" r="50" stroke="#E0E0E0" stroke-width="3" fill="none"/>
-        <path d="M40 50C40 50 45 40 60 40C75 40 80 50 80 50" stroke="#1565C0" stroke-width="3" fill="none"/>
-        <circle cx="48" cy="55" r="4" fill="#1565C0"/>
-        <circle cx="72" cy="55" r="4" fill="#1565C0"/>
-        <path d="M45 70C45 70 52 78 60 78C68 78 75 70 75 70" stroke="#1565C0" stroke-width="2" fill="none"/>
-        <rect x="30" y="30" width="60" height="60" rx="10" stroke="#42A5F5" stroke-width="2" fill="none" stroke-dasharray="5 5" style="animation:spin 8s linear infinite;transform-origin:center"/>
-      </svg>
-    </div>
-    <div class="loading-dots">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <p style="font-size:16px;color:var(--text);margin-top:16px;line-height:1.5">ИИ анализирует данные. Это займет<br>немного времени. Пожалуйста, подождите.</p>
-  </div>
-  <div style="height:30vh;background:var(--red);border-radius:50% 50% 0 0 / 100% 100% 0 0;margin-top:-60px"></div>
+<div class="header">
+<div class="logo-icon"><svg viewBox="0 0 32 38" fill="none"><path d="M16 1C16 1 3 14 3 22C3 30 9 35 16 35C23 35 29 30 29 22C29 14 16 1 16 1Z" fill="#E53935"/><rect x="11" y="17" width="10" height="10" rx="2" fill="white"/><rect x="14.5" y="15" width="3" height="14" rx="1" fill="white"/><rect x="10" y="20.5" width="12" height="3" rx="1" fill="white"/></svg></div>
+<div style="flex:1"></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff 0%,#E3F2FD 50%,#fff 100%);text-align:center;padding:20px">
+<div style="width:120px;height:120px;margin-bottom:24px;position:relative">
+<svg viewBox="0 0 120 120" fill="none">
+<circle cx="60" cy="60" r="50" stroke="#E0E0E0" stroke-width="3" fill="none"/>
+<path d="M40 50C40 50 45 40 60 40C75 40 80 50 80 50" stroke="#1565C0" stroke-width="3" fill="none"/>
+<circle cx="48" cy="55" r="4" fill="#1565C0"/>
+<circle cx="72" cy="55" r="4" fill="#1565C0"/>
+<path d="M45 70C45 70 52 78 60 78C68 78 75 70 75 70" stroke="#1565C0" stroke-width="2" fill="none"/>
+<rect x="30" y="30" width="60" height="60" rx="10" stroke="#42A5F5" stroke-width="2" fill="none" stroke-dasharray="5 5" style="animation:spin 8s linear infinite;transform-origin:center"/>
+</svg>
+</div>
+<div class="loading-dots"><span></span><span></span><span></span><span></span><span></span></div>
+<p style="font-size:16px;color:var(--text);margin-top:16px;line-height:1.5">ИИ анализирует данные. Это займет<br>немного времени. Пожалуйста, подождите.</p>
+</div>
+<div style="height:30vh;background:var(--red);border-radius:50% 50% 0 0 / 100% 100% 0 0;margin-top:-60px"></div>
 </div>
 
-<!-- SCREEN 10: VIRTUAL ASSISTANT -->
+<!-- SCREEN: VIRTUAL ASSISTANT -->
 <div class="screen" id="assistant">
-  <div class="header">
-    <div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Виртуальный Ассистент</div>
-    <div class="action"></div>
-  </div>
-  <div style="background:linear-gradient(135deg,#1565C0,#42A5F5);padding:24px;text-align:center;color:#fff">
-    <div style="width:80px;height:80px;margin:0 auto 16px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px">🤖</div>
-    <p style="font-size:15px;line-height:1.6;opacity:.95">Перед составлением отчета, я задам вам несколько вопросов о вашем здоровье.</p>
-  </div>
-  <div class="content">
-    <div style="background:#FFF8E1;border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:14px;line-height:1.5">
-      <span style="margin-right:6px">📝</span> Пожалуйста, помните, что я не могу ставить диагноз или назначать лечение. Это может делать только квалифицированный врач.
-    </div>
-    <div style="background:#FFF3E0;border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:14px;line-height:1.5">
-      <span style="margin-right:6px">👆</span> Для наиболее точных результатов загружайте свежие анализы, сделанные не более 3 месяцев назад.
-    </div>
-    <div style="background:#F5F5F5;border-radius:var(--radius);padding:14px;margin-bottom:20px;font-size:13px;line-height:1.5">
-      Ваши данные будут обработаны OpenAI. Нажимая «Купить отчет», вы соглашаетесь с этим. Это безопасно — OpenAI не хранит ваши данные.
-    </div>
-    <button class="btn btn-primary" onclick="showScreen('results')">Купить отчет за 249.00 ₽</button>
-  </div>
+<div class="header">
+<div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Виртуальный Ассистент</div>
+<div class="action"></div>
+</div>
+<div style="background:linear-gradient(135deg,#1565C0,#42A5F5);padding:24px;text-align:center;color:#fff">
+<div style="width:80px;height:80px;margin:0 auto 16px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px">🤖</div>
+<p style="font-size:15px;line-height:1.6;opacity:.95">Перед составлением отчета, я задам вам несколько вопросов о вашем здоровье.</p>
+</div>
+<div class="content">
+<div style="background:#FFF8E1;border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:14px;line-height:1.5">
+<span style="margin-right:6px">📝</span> Пожалуйста, помните, что я не могу ставить диагноз или назначать лечение. Это может делать только квалифицированный врач.
+</div>
+<div style="background:#FFF3E0;border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:14px;line-height:1.5">
+<span style="margin-right:6px">👆</span> Для наиболее точных результатов загружайте свежие анализы, сделанные не более 3 месяцев назад.
+</div>
+<div style="background:#F5F5F5;border-radius:var(--radius);padding:14px;margin-bottom:20px;font-size:13px;line-height:1.5">
+Ваши данные будут обработаны OpenAI. Нажимая «Купить отчет», вы соглашаетесь с этим. Это безопасно — OpenAI не хранит ваши данные.
+</div>
+<button class="btn btn-primary" onclick="showScreen('order')">Купить отчет за 889 ₽</button>
+</div>
+<div class="tab-bar">
+<div class="tab-item" onclick="switchTab(this,'profileView')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div><span>Вы</span></div>
+<div class="tab-item" onclick="switchTab(this,'main')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></div><span>Монитор</span></div>
+<div class="tab-item" onclick="switchTab(this,'upload')"><div class="tab-icon center"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div><span></span></div>
+<div class="tab-item active" onclick="switchTab(this,'assistant')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div><span>Ассистент</span></div>
+<div class="tab-item" onclick="switchTab(this,'more')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div><span>Еще</span></div>
+</div>
 </div>
 
-<!-- SCREEN 11: RESULTS -->
-<div class="screen" id="results">
-  <div class="header">
-    <div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Результаты ИИ исследования</div>
-    <div class="action"></div>
-  </div>
-  <div class="content" style="padding-bottom:80px">
-    <div style="display:flex;align-items:center;margin-bottom:16px">
-      <div style="width:48px;height:48px;border-radius:50%;background:#E3F2FD;display:flex;align-items:center;justify-content:center;font-size:24px;margin-right:12px">🤖</div>
-      <div style="font-size:16px;font-weight:600">analyza.io</div>
-    </div>
-    <div class="chat-bubble bot">Я подготовил расшифровку ваших анализов. Если что-то будет непонятно, вы можете задать вопрос в чате — я отвечу.</div>
-    <div class="card" style="margin-top:16px">
-      <div class="metric-row">
-        <div class="metric-icon orange">🩸</div>
-        <div class="metric-info">
-          <div class="metric-name">Кровяное давление, усредненный</div>
-          <div class="metric-value">200/100 мм рт.ст.</div>
-        </div>
-        <div class="metric-status warn"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon green">⚖️</div>
-        <div class="metric-info">
-          <div class="metric-name">Вес, усредненный</div>
-          <div class="metric-value">71.0 кг</div>
-        </div>
-        <div class="metric-status good"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon red">🍬</div>
-        <div class="metric-info">
-          <div class="metric-name">Глюкоза в крови, усредненная</div>
-          <div class="metric-value">164.00 мг/дл</div>
-        </div>
-        <div class="metric-status bad"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon green">📊</div>
-        <div class="metric-info">
-          <div class="metric-name">Индекс массы тела, усредненный</div>
-          <div class="metric-value">21.01 кг/м²</div>
-        </div>
-        <div class="metric-status good"></div>
-      </div>
-      <div class="metric-row">
-        <div class="metric-icon green">💓</div>
-        <div class="metric-info">
-          <div class="metric-name">Пульс, усредненный</div>
-          <div class="metric-value">60 уд/мин</div>
-        </div>
-        <div class="metric-status good"></div>
-      </div>
-    </div>
-  </div>
-  <div class="chat-input-row">
-    <div style="cursor:pointer;font-size:24px">📎</div>
-    <input class="chat-input" placeholder="Напишите сюда сообщение" id="chatInput">
-    <button class="chat-send" onclick="sendChatMessage()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-    </button>
-  </div>
+<!-- SCREEN: ORDER -->
+<div class="screen" id="order">
+<div class="header">
+<div class="back" onclick="showScreen('assistant')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title"></div>
+<div class="action"></div>
+</div>
+<div class="content">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
+<div><h2 style="font-size:22px;font-weight:700">Заказ</h2><p style="font-size:14px;color:var(--text-light);margin-top:4px">Отчет о состоянии здоровья<br>от медицинского консьержа</p></div>
+<div style="font-size:22px;font-weight:700;color:var(--red)">889 ₽</div>
+</div>
+<div style="border-top:1px solid #F0F0F0;padding-top:20px">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+<span style="font-size:16px;font-weight:600">Профиль</span>
+<div style="width:32px;height:32px;border-radius:50%;background:#E3F2FD;display:flex;align-items:center;justify-content:center;margin-left:auto">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#42A5F5"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+</div>
+</div>
+<input style="width:100%;padding:14px;border:1px solid #E0E0E0;border-radius:10px;font-size:15px;outline:none;margin-bottom:16px" placeholder="Адрес электронной почты">
+<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:24px">
+<div style="flex:1;font-size:13px;color:var(--text-light);line-height:1.4">Я соглашаюсь дать медицинскому консьержу analyza доступ к моим данным о здоровье для подготовки отчета</div>
+<div class="toggle" onclick="this.classList.toggle('on')"></div>
+</div>
+</div>
+<button class="btn btn-disabled" style="margin-top:16px">Оплатить через Apple Pay</button>
+</div>
 </div>
 
-<!-- SCREEN 12: PROFILE -->
-<div class="screen" id="profile">
-  <div class="header">
-    <div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Профиль</div>
-    <div style="width:40px;height:40px;border-radius:50%;background:var(--gray);display:flex;align-items:center;justify-content:center">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#757575"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-    </div>
-  </div>
-  <div class="content">
-    <!-- Subscribe Banner -->
-    <div style="background:linear-gradient(135deg,#E53935,#AD1457);border-radius:var(--radius-lg);padding:20px;color:#fff;margin-bottom:20px;cursor:pointer" onclick="showScreen('subscribe')">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div>
-          <div style="font-size:13px;opacity:.8">Повысьте уровень до</div>
-          <div style="font-size:18px;font-weight:700;margin-top:4px">analyza.io ПЛЮС</div>
-          <div style="font-size:13px;margin-top:4px;opacity:.9">Откройте все возможности и чувствуйте себя отлично</div>
-        </div>
-        <div style="font-size:36px">✨</div>
-      </div>
-    </div>
-    <!-- Settings -->
-    <div class="settings-item" onclick="showScreen('register')">
-      <div class="icon">🔒</div>
-      <div class="label">Защитить ваши данные</div>
-      <div class="arrow">›</div>
-    </div>
-    <div class="settings-item">
-      <div class="icon">🔬</div>
-      <div class="label">Подключенные лаборатории</div>
-      <div class="arrow">›</div>
-    </div>
-    <div class="settings-item">
-      <div class="icon">👨‍⚕️</div>
-      <div class="label">Подключенные специалисты</div>
-      <div class="arrow">›</div>
-    </div>
-    <div class="settings-item" id="notifToggle">
-      <div class="icon">🔔</div>
-      <div class="label">Включите уведомления</div>
-      <div class="toggle" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
-    </div>
-    <div class="settings-item">
-      <div class="icon">❤️</div>
-      <div class="label">Приложение Здоровье</div>
-      <div class="arrow">›</div>
-    </div>
-    <div class="settings-item">
-      <div class="icon">📚</div>
-      <div class="label">analyza Вики</div>
-      <div class="arrow">›</div>
-    </div>
-    <div style="margin-top:20px;border-top:1px solid #F0F0F0;padding-top:16px">
-      <div class="settings-item">
-        <div class="icon">🏆</div>
-        <div class="label">Челленджи с сопровождением</div>
-        <div class="arrow">›</div>
-      </div>
-      <div class="settings-item" onclick="showScreen('support')">
-        <div class="icon">💬</div>
-        <div class="label">Поддержка</div>
-        <div class="arrow">›</div>
-      </div>
-      <div class="settings-item">
-        <div class="icon">📜</div>
-        <div class="label">Правила и документы</div>
-        <div class="arrow">›</div>
-      </div>
-      <div class="settings-item" onclick="showScreen('deleteData')">
-        <div class="icon">🗑️</div>
-        <div class="label">Удаление данных</div>
-        <div class="arrow">›</div>
-      </div>
-    </div>
-  </div>
-  <!-- Tab Bar -->
-  <div class="tab-bar">
-    <div class="tab-item" onclick="switchTab(this,'main')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-      <span>Главная</span>
-    </div>
-    <div class="tab-item" onclick="switchTab(this,'upload')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Анализы</span>
-    </div>
-    <div class="tab-item" onclick="switchTab(this,'community')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-      <span>Статьи</span>
-    </div>
-    <div class="tab-item active" onclick="switchTab(this,'profile')">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-      <span>Профиль</span>
-    </div>
-  </div>
+<!-- SCREEN: MORE (Ещё) -->
+<div class="screen" id="more">
+<div style="padding:20px">
+<h2 style="font-size:22px;font-weight:700;margin-bottom:20px">Ещё</h2>
+<div class="profile-banner" onclick="showScreen('paywall')">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<div>
+<div style="font-size:13px;opacity:.8">Повысьте уровень до</div>
+<div style="font-size:18px;font-weight:700;margin-top:4px">analyza.io ПЛЮС</div>
+<div style="font-size:13px;margin-top:4px;opacity:.9">Откройте все возможности</div>
+</div>
+<div style="font-size:36px">✨</div>
+</div>
+</div>
+<div class="settings-item" onclick="showScreen('register')">
+<div class="icon">🔒</div>
+<div class="label">Защитить ваши данные</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('connectedLabs')">
+<div class="icon">🔬</div>
+<div class="label">Подключенные лаборатории</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('connectedDoctors')">
+<div class="icon">👨‍⚕️</div>
+<div class="label">Подключенные специалисты</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('checkups')">
+<div class="icon">📋</div>
+<div class="label">Чекапы</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('challenges')">
+<div class="icon">🏆</div>
+<div class="label">Челленджи с сопровождением</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" id="notifToggle">
+<div class="icon">🔔</div>
+<div class="label">Включите уведомления</div>
+<div class="toggle" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+</div>
+<div class="settings-item" onclick="showScreen('wiki')">
+<div class="icon">📚</div>
+<div class="label">analyza Вики</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('community')">
+<div class="icon">📰</div>
+<div class="label">Сообщество</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('support')">
+<div class="icon">💬</div>
+<div class="label">Поддержка</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('settings')">
+<div class="icon">⚙️</div>
+<div class="label">Настройки</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('rules')">
+<div class="icon">📜</div>
+<div class="label">Правила и документы</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('dataProtection')">
+<div class="icon">🛡️</div>
+<div class="label">Как мы защищаем ваши данные</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item" onclick="showScreen('deleteData')">
+<div class="icon">🗑️</div>
+<div class="label">Удаление данных</div>
+<div class="arrow">›</div>
+</div>
+</div>
+<div class="tab-bar">
+<div class="tab-item" onclick="switchTab(this,'profileView')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div><span>Вы</span></div>
+<div class="tab-item" onclick="switchTab(this,'main')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></div><span>Монитор</span></div>
+<div class="tab-item" onclick="switchTab(this,'upload')"><div class="tab-icon center"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div><span></span></div>
+<div class="tab-item" onclick="switchTab(this,'assistant')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div><span>Ассистент</span></div>
+<div class="tab-item active" onclick="switchTab(this,'more')"><div class="tab-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div><span>Еще</span></div>
+</div>
 </div>
 
-<!-- SCREEN 13: COMMUNITY -->
+<!-- SCREEN: CHECKUPS -->
+<div class="screen" id="checkups">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Чекапы</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<input class="search-bar" placeholder="🔍 Поиск">
+<div class="checkup-item"><div class="emoji">🏥</div><div class="info"><h4>Общий чекап</h4><p>Помогает выявить основные риски для здоровья</p></div></div>
+<div class="checkup-item"><div class="emoji">😷</div><div class="info"><h4>Пост-ковид чекап</h4><p>Выявляет осложнения после перенесённого коронавируса</p></div></div>
+<div class="checkup-item"><div class="emoji">💊</div><div class="info"><h4>Витамины и минералы</h4><p>Помогает определить дефицит витаминов и минеральных веществ</p></div></div>
+<div class="checkup-item"><div class="emoji">🏋️</div><div class="info"><h4>Чекап для похудения</h4><p>Эти анализы помогут выяснить, получится ли худеть легко и без осложнений</p></div></div>
+<div class="checkup-item"><div class="emoji">⏰</div><div class="info"><h4>Чекап для интервального голодания</h4><p>Помогает узнать, есть ли противопоказания к интервальному голоданию</p></div></div>
+<div class="checkup-item"><div class="emoji">😴</div><div class="info"><h4>Чекап "Здоровый сон"</h4><p>Если нарушения сна происходят без видимых причин</p></div></div>
+</div>
+</div>
+
+<!-- SCREEN: CHALLENGES -->
+<div class="screen" id="challenges">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Челленджи с сопровождением</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<div class="challenge-card">
+<div class="bg" style="background:linear-gradient(135deg,#E8D5B7,#C4A882)"></div>
+<div class="overlay"></div>
+<div class="content-z"><div style="font-size:11px;opacity:.8">21 ДЕНЬ</div><h3 style="font-size:18px;font-weight:700;margin:4px 0">Челлендж для тех, кто хочет иметь красивые ягодицы</h3><div style="font-size:12px;opacity:.8">22K участников · 1,250 RUB</div><div class="join-btn">Присоединяйтесь</div></div>
+</div>
+<div class="challenge-card">
+<div class="bg" style="background:linear-gradient(135deg,#A5D6A7,#66BB6A)"></div>
+<div class="overlay"></div>
+<div class="content-z"><div style="font-size:11px;opacity:.8">28 ДНЕЙ</div><h3 style="font-size:18px;font-weight:700;margin:4px 0">Йога на стуле: СМАРТ-марафон</h3><div style="font-size:12px;opacity:.8">35K участников · 1,490 RUB</div><div class="join-btn">Присоединяйтесь</div></div>
+</div>
+<div class="challenge-card">
+<div class="bg" style="background:linear-gradient(135deg,#90CAF9,#42A5F5)"></div>
+<div class="overlay"></div>
+<div class="content-z"><div style="font-size:11px;opacity:.8">21 ДЕНЬ</div><h3 style="font-size:18px;font-weight:700;margin:4px 0">Интервальное голодание: как добиться быстрых результатов</h3><div style="font-size:12px;opacity:.8">36K участников · 1,790 RUB</div><div class="join-btn">Присоединяйтесь</div></div>
+</div>
+<div class="challenge-card">
+<div class="bg" style="background:linear-gradient(135deg,#EF9A9A,#EF5350)"></div>
+<div class="overlay"></div>
+<div class="content-z"><div style="font-size:11px;opacity:.8">28 ДНЕЙ</div><h3 style="font-size:18px;font-weight:700;margin:4px 0">Будь в форме: фитнес-гид для реальной жизни</h3><div style="font-size:12px;opacity:.8">48K участников · 2,490 RUB</div><div class="join-btn">Присоединяйтесь</div></div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN: COMMUNITY -->
 <div class="screen" id="community">
-  <div class="header">
-    <div class="back" onclick="showScreen('main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Сообщество</div>
-    <div style="width:40px;height:40px;border-radius:50%;background:var(--gray);display:flex;align-items:center;justify-content:center">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#757575"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-    </div>
-  </div>
-  <div style="padding:0 20px 12px"><input style="width:100%;padding:12px 16px;border:1px solid #E0E0E0;border-radius:12px;font-size:15px;outline:none" placeholder="🔍 Поиск статей..."></div>
-  <div class="content" style="padding-top:0;padding-bottom:100px">
-    <div class="community-card">
-      <div style="height:160px;background:linear-gradient(135deg,#FFE0B2,#FFCC80);display:flex;align-items:center;justify-content:center;font-size:48px">🧴</div>
-      <div class="info">
-        <h4>Уход за кожей: Советы дерматолога</h4>
-        <p>Узнайте, как правильно ухаживать за кожей в разное время года</p>
-      </div>
-    </div>
-    <div class="community-card">
-      <div style="height:160px;background:linear-gradient(135deg,#E1BEE7,#CE93D8);display:flex;align-items:center;justify-content:center;font-size:48px">🧠</div>
-      <div class="info">
-        <h4>Мозг восстанавливается?</h4>
-        <p>Новейшие исследования о нейропластичности мозга</p>
-      </div>
-    </div>
-    <div class="community-card">
-      <div style="height:160px;background:linear-gradient(135deg,#B2DFDB,#80CBC4);display:flex;align-items:center;justify-content:center;font-size:48px">🧘</div>
-      <div class="info">
-        <h4>Техники расслабления</h4>
-        <p>Эффективные методы борьбы со стрессом</p>
-      </div>
-    </div>
-  </div>
-  <!-- Tab Bar -->
-  <div class="tab-bar">
-    <div class="tab-item" onclick="switchTab(this,'main')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Главная</span></div>
-    <div class="tab-item" onclick="switchTab(this,'upload')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg><span>Анализы</span></div>
-    <div class="tab-item active" onclick="switchTab(this,'community')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg><span>Статьи</span></div>
-    <div class="tab-item" onclick="switchTab(this,'profile')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Профиль</span></div>
-  </div>
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Сообщество</div>
+<div style="width:32px;height:32px;border-radius:50%;background:#E3F2FD;display:flex;align-items:center;justify-content:center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="#42A5F5"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+</div>
+</div>
+<div style="padding:0 20px"><input class="search-bar" placeholder="🔍 Поиск"></div>
+<div class="content" style="padding-top:0">
+<div class="community-card">
+<div class="img" style="background:linear-gradient(135deg,#FFE0B2,#FFCC80)">🧴</div>
+<div class="info"><h4>Кожа младенца: уход за кожей</h4><p>Узнайте, как правильно ухаживать за кожей в разное время года</p></div>
+</div>
+<div class="community-card">
+<div class="img" style="background:linear-gradient(135deg,#E1BEE7,#CE93D8)">🧠</div>
+<div class="info"><h4>Восстанавливаются ли нервы?</h4><p>Новейшие исследования о нейропластичности мозга</p></div>
+</div>
+<div class="community-card">
+<div class="img" style="background:linear-gradient(135deg,#B2DFDB,#80CBC4)">🧘</div>
+<div class="info"><h4>Дыхательные техники</h4><p>Эффективные методы борьбы со стрессом</p></div>
+</div>
+</div>
 </div>
 
-<!-- SCREEN 14: SUPPORT -->
+<!-- SCREEN: WIKI -->
+<div class="screen" id="wiki">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">analyza Вики</div>
+<div class="action"></div>
+</div>
+<div style="padding:0 20px">
+<input class="search-bar" placeholder="🔍 Поиск">
+<div style="display:flex;gap:8px;margin-bottom:16px">
+<div class="bio-tab active">Биомаркеры</div>
+<div class="bio-tab">Документы</div>
+</div>
+</div>
+<div class="content" style="padding-top:0">
+<div class="wiki-item"><span>pH, моча</span></div>
+<div class="wiki-item"><span>Давление</span></div>
+<div class="wiki-item"><span>Индекс массы тела</span></div>
+<div class="wiki-item"><span>Кровь, лейкоциты</span></div>
+<div class="wiki-item"><span>Лимфоциты</span></div>
+<div class="wiki-item"><span>Нейтрофилы</span></div>
+<div class="wiki-item"><span>Пульс в покое</span></div>
+<div class="wiki-item"><span>Вес, рост</span></div>
+<div class="wiki-item"><span>Слизь, моча</span></div>
+<div class="wiki-item"><span>Белок</span></div>
+<div class="wiki-item"><span>Глюкоза</span></div>
+</div>
+</div>
+
+<!-- SCREEN: SUPPORT -->
 <div class="screen" id="support">
-  <div class="header">
-    <div class="back" onclick="showScreen('profile')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Поддержка</div>
-    <div class="action"></div>
-  </div>
-  <div class="content" style="display:flex;flex-direction:column;padding-bottom:80px">
-    <div style="display:flex;flex-direction:column;gap:12px;flex:1">
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <div style="width:36px;height:36px;border-radius:50%;background:#FFEBEE;display:flex;align-items:center;justify-content:center;font-size:16px;min-width:36px">🆘</div>
-        <div class="chat-bubble bot" style="margin:0">
-          <div style="font-weight:600;margin-bottom:6px">Поддержка</div>
-          Привет! Нужна помощь? Напишите нам и мы ответим как можно скорее!
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="chat-input-row">
-    <div style="cursor:pointer;font-size:24px">📎</div>
-    <input class="chat-input" placeholder="Напишите сюда сообщение">
-    <button class="chat-send">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-    </button>
-  </div>
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Служба поддержки</div>
+<div class="action"></div>
+</div>
+<div class="content" style="display:flex;flex-direction:column;padding-bottom:80px">
+<div style="display:flex;align-items:flex-start;gap:10px">
+<div style="width:36px;height:36px;border-radius:50%;background:#FFEBEE;display:flex;align-items:center;justify-content:center;font-size:16px;min-width:36px">🆘</div>
+<div class="chat-bubble bot" style="margin:0">
+<div style="font-weight:600;margin-bottom:6px">Поддержка</div>
+Здравствуйте! Нужна помощь? Напишите нам и мы ответим как можно скорее!
+</div>
+</div>
+</div>
+<div class="chat-input-row">
+<div style="cursor:pointer;font-size:24px">📎</div>
+<input class="chat-input" placeholder="Напишите сюда сообщение">
+<button class="chat-send"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+</div>
 </div>
 
-<!-- SCREEN 15: REGISTER -->
+<!-- SCREEN: SETTINGS -->
+<div class="screen" id="settings">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Настройки</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<div class="settings-item">
+<div class="icon" style="background:#FFEBEE">🔴</div>
+<div class="label">Хранение бланков на Сервере</div>
+<div class="toggle on" onclick="event.stopPropagation();this.classList.toggle('on')"></div>
+</div>
+<div class="settings-item">
+<div class="icon" style="background:#FFEBEE">🅰️</div>
+<div class="label">Язык</div>
+<div class="value">Авто</div>
+<div class="arrow">›</div>
+</div>
+<div class="settings-item">
+<div class="icon">🌍</div>
+<div class="label">Регион</div>
+<div class="value">Российская федерация</div>
+<div class="arrow">›</div>
+</div>
+</div>
+</div>
+
+<!-- SCREEN: CONNECTED LABS -->
+<div class="screen" id="connectedLabs">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Подключенные лаборатории</div>
+<div class="action"></div>
+</div>
+<div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:60vh">
+<div style="font-size:64px;margin-bottom:16px">🔬</div>
+<p style="font-size:15px;color:var(--text-light);line-height:1.5;margin-bottom:16px">Подключенные лаборатории будут отображаться здесь и автоматически загружать результаты тестов в приложение</p>
+<span style="color:var(--red);font-weight:600;cursor:pointer">Как подключить</span>
+</div>
+</div>
+
+<!-- SCREEN: CONNECTED DOCTORS -->
+<div class="screen" id="connectedDoctors">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Подключенные специалисты</div>
+<div class="action"></div>
+</div>
+<div class="content" style="text-align:center">
+<div style="font-size:64px;margin-bottom:16px">👨‍⚕️</div>
+<p style="font-size:15px;color:var(--text-light);line-height:1.5;margin-bottom:24px">Вы можете подключить вашего врача, нутрициониста или иного специалиста, чтобы он мог следить за вашим здоровьем</p>
+<h3 style="font-size:18px;font-weight:700;margin-bottom:20px">Как это работает</h3>
+<div style="margin-bottom:20px"><div style="font-size:28px;margin-bottom:8px">📩</div><p style="font-size:14px;color:var(--text-light);line-height:1.4">Отправьте вашему врачу ссылку на analyza. Он добавит вас в качестве клиента и пришлет вам приглашение.</p></div>
+<div style="margin-bottom:20px"><div style="font-size:28px;margin-bottom:8px">✅</div><p style="font-size:14px;color:var(--text-light);line-height:1.4">Когда вы примете приглашение, врач сможет просматривать ваши медицинские данные.</p></div>
+<div><div style="font-size:28px;margin-bottom:8px">🔒</div><p style="font-size:14px;color:var(--text-light);line-height:1.4">Ваши данные в безопасности. Вы можете отключить врача в любой момент.</p></div>
+</div>
+</div>
+
+<!-- SCREEN: REGISTER -->
 <div class="screen" id="register">
-  <div class="header">
-    <div class="back" onclick="showScreen('profile')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title"></div>
-    <div class="action"></div>
-  </div>
-  <div class="content" style="display:flex;flex-direction:column;align-items:center;text-align:center">
-    <div style="width:80px;height:80px;margin-bottom:20px;background:#FFEBEE;border-radius:20px;display:flex;align-items:center;justify-content:center">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#E53935"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-    </div>
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:12px">Защитить ваши данные</h2>
-    <p style="font-size:15px;color:var(--text-light);line-height:1.5;margin-bottom:32px">Зарегистрируйтесь - так ваши данные не потеряются при смене телефона, а другие члены семьи смогут пользоваться приложением вместе с вами.</p>
-    <button class="btn btn-google" style="margin-bottom:10px"><span class="btn-icon">🔵</span> Продолжить с Google</button>
-    <button class="btn btn-apple" style="margin-bottom:10px"><span class="btn-icon">🍎</span> Продолжить с Apple</button>
-    <button class="btn btn-email"><span class="btn-icon">✉️</span> Продолжить с эл. почтой</button>
-    <p style="font-size:12px;color:var(--text-light);margin-top:20px;line-height:1.5">Если вы планируете входить в аккаунт на других устройствах, будет удобнее не скрывать email при входе через Apple</p>
-  </div>
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Зарегистрировать analyza</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<div style="text-align:center;margin-bottom:24px">
+<div style="width:80px;height:80px;margin:0 auto 20px;background:#FFEBEE;border-radius:20px;display:flex;align-items:center;justify-content:center">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="#E53935"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+</div>
+<h2 style="font-size:22px;font-weight:700;margin-bottom:8px">Данные не потеряется</h2>
+<p style="font-size:14px;color:var(--text-light);line-height:1.5;margin-bottom:16px">Зарегистрируйте приложение или войдите. Благодаря этому, все ваши данные будут сохранены. Просто установите analyza и войдите в аккаунт.</p>
+</div>
+<h3 style="font-size:16px;font-weight:700;margin-bottom:12px">На нескольких устройствах</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.5;margin-bottom:20px">Вы сможете пользоваться analyza на нескольких телефонах и на iOS И Android</p>
+<h3 style="font-size:16px;font-weight:700;margin-bottom:12px">Семейный доступ</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.5;margin-bottom:24px">Этим приложением могут пользоваться другие члены семьи - каждый на своем профиле. Если вы пользуетесь премиум-версией, одной подписки будет достаточно для всех членов семьи.</p>
+<button class="btn btn-google" style="margin-bottom:10px"><span class="btn-icon">🔵</span> Продолжить с Google</button>
+<button class="btn btn-apple" style="margin-bottom:10px"><span class="btn-icon">🍎</span> Продолжить с Apple</button>
+<button class="btn btn-email"><span class="btn-icon">✉️</span> Продолжить с эл. почтой</button>
+</div>
 </div>
 
-<!-- SCREEN 16: SUBSCRIBE -->
-<div class="screen" id="subscribe">
-  <div class="header">
-    <div class="back" onclick="showScreen('profile')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Подписка</div>
-    <div class="action"></div>
-  </div>
-  <div class="content" style="text-align:center">
-    <div class="paywall-card">
-      <div style="font-size:48px;margin-bottom:12px">✨</div>
-      <h2 style="font-size:22px;font-weight:700;margin-bottom:8px">analyza PLUS</h2>
-      <p style="font-size:14px;opacity:.8;margin-bottom:16px">Безлимитные отчеты и все функции</p>
-      <div class="price-tag">889 ₽</div>
-      <div class="price-period">в месяц</div>
-    </div>
-    <div style="text-align:left;padding:0 20px">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-        <span style="color:var(--green);font-size:20px">✓</span>
-        <span style="font-size:15px">Безлимитные отчеты ИИ</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-        <span style="color:var(--green);font-size:20px">✓</span>
-        <span style="font-size:15px">Приоритетная обработка</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-        <span style="color:var(--green);font-size:20px">✓</span>
-        <span style="font-size:15px">Семейный доступ</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-        <span style="color:var(--green);font-size:20px">✓</span>
-        <span style="font-size:15px">Чат с ИИ-ассистентом</span>
-      </div>
-    </div>
-    <button class="btn btn-primary" style="margin-top:20px" onclick="alert('Оплата будет подключена позже')">Оформить подписку</button>
-    <button class="btn btn-outline" style="margin-top:12px" onclick="showScreen('profile')">Позже</button>
-  </div>
+<!-- SCREEN: RULES & DOCUMENTS -->
+<div class="screen" id="rules">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Правила и документы</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<div class="doc-item" onclick="showScreen('infoSources')">
+<div class="doc-icon">📄</div>
+<div class="doc-label">Правила оцифровки документов</div>
+<div class="doc-arrow">›</div>
+</div>
+<div class="doc-item">
+<div class="doc-icon">📄</div>
+<div class="doc-label">Политика конфиденциальности</div>
+<div class="doc-arrow">›</div>
+</div>
+<div class="doc-item">
+<div class="doc-icon">📄</div>
+<div class="doc-label">Условия предоставления услуг</div>
+<div class="doc-arrow">›</div>
+</div>
+</div>
 </div>
 
-<!-- SCREEN 17: DELETE DATA -->
+<!-- SCREEN: DATA PROTECTION -->
+<div class="screen" id="dataProtection">
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title"></div>
+<div class="action"></div>
+</div>
+<div class="content">
+<h2 style="font-size:22px;font-weight:700;margin-bottom:20px">Как мы защищаем ваши данные</h2>
+<h3 style="font-size:16px;font-weight:700;color:var(--red);margin-bottom:12px">Безопасность это важно</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:20px">Тысячи людей доверяют нам свои данные для анализа и хранения и мы несём ответственность за их безопасность. Нам важно, чтобы они использовались только в целях, предусмотренных в Договоре, хранились в зашифрованном виде, постоянно делали резервные копии — чтобы ничего не потерялось.</p>
+<h3 style="font-size:16px;font-weight:700;color:var(--red);margin-bottom:12px">Хранение и передача данных</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:20px">Все данные передаются по защищённым каналам с использованием TLS технологии, идентичной для шифрования банковских данных. Последние результаты анализов прошли просто никто не перехватит. Данные передаются только по защищённым каналам. Мы с клиентом доступ получаем.</p>
+<h3 style="font-size:16px;font-weight:700;color:var(--red);margin-bottom:12px">Анонимность</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.6">Все ваши данные не хранятся и не продаются. Потому вы можете пользоваться Сервисом полностью анонимно. Личные данные не хранятся — ни на серверах, ни в App Store и Play.</p>
+</div>
+</div>
+
+<!-- SCREEN: INFO SOURCES -->
+<div class="screen" id="infoSources">
+<div class="header">
+<div class="back" onclick="showScreen('rules')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Наши источники информации</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<p style="font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:20px">Вся информация, опубликованная в приложении, основана на данных, полученных из рецензируемых исследований академических исследовательских институтов и медицинских ассоциаций. Мы постоянно отслеживаем все изменения медицинских и научных трендов и обновляем статьи по мере появления новой информации.</p>
+<h3 style="font-size:16px;font-weight:700;margin-bottom:12px">Источники информации о здоровье</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.6;margin-bottom:20px">Список научных источников и медицинских баз данных, используемых в приложении.</p>
+<h3 style="font-size:16px;font-weight:700;margin-bottom:12px">Источники для справочники по биомаркерам</h3>
+<p style="font-size:14px;color:var(--text-light);line-height:1.6">Справочные материалы по биомаркерам основаны на международных стандартах лабораторной диагностики.</p>
+</div>
+</div>
+
+<!-- SCREEN: DELETE DATA -->
 <div class="screen" id="deleteData">
-  <div class="header">
-    <div class="back" onclick="showScreen('profile')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
-    <div class="title">Удаление данных</div>
-    <div class="action"></div>
-  </div>
-  <div class="content">
-    <p style="font-size:15px;line-height:1.6;margin-bottom:20px">Все загруженные вами анализы будут удалены. Данные невозможно восстановить. Если у вас есть подписка <span style="color:var(--red);font-weight:600">analyza plus</span>, ее стоимость продолжит списываться с вашего аккаунта.</p>
-    <p style="font-size:15px;line-height:1.6;margin-bottom:24px">Вам необходимо отменить автопродление подписки в настройках Apple Store. Для подтверждения удаления, введите 3890</p>
-    <input style="width:100%;padding:14px;border:1px solid #E0E0E0;border-radius:12px;font-size:18px;text-align:center;outline:none;letter-spacing:8px" placeholder="КОД" maxlength="4" id="deleteCode">
-    <button class="btn btn-disabled" style="margin-top:20px" id="deleteBtn" onclick="confirmDelete()">Удалить все данные</button>
-  </div>
+<div class="header">
+<div class="back" onclick="showScreen('more')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+<div class="title">Удаление данных</div>
+<div class="action"></div>
+</div>
+<div class="content">
+<p style="font-size:15px;line-height:1.6;margin-bottom:20px">Все загруженные вами анализы будут удалены. Данные невозможно восстановить. Если у вас есть подписка <span style="color:var(--red);font-weight:600">analyza plus</span>, ее стоимость продолжит списываться с вашего аккаунта.</p>
+<p style="font-size:15px;line-height:1.6;margin-bottom:24px">Вам необходимо отменить автопродление подписки в настройках Apple Store. Для подтверждения удаления, введите 3890</p>
+<input style="width:100%;padding:14px;border:1px solid #E0E0E0;border-radius:12px;font-size:18px;text-align:center;outline:none;letter-spacing:8px" placeholder="КОД" maxlength="4" id="deleteCode">
+<button class="btn btn-disabled" style="margin-top:20px" id="deleteBtn" onclick="confirmDelete()">Удалить все данные</button>
+</div>
 </div>
 
-<!-- SCREEN 18: ERROR -->
+<!-- SCREEN: ERROR -->
 <div class="screen" id="error">
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center">
-    <div style="width:100px;height:100px;background:#FFEBEE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:24px">
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="#E53935"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
-    </div>
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:8px;color:var(--red)">Ошибка</h2>
-    <p style="font-size:16px;color:var(--text-light);margin-bottom:32px">Что-то пошло не так. Попробуйте позже.</p>
-    <button class="btn btn-primary" onclick="showScreen('main')">На главную</button>
-  </div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center">
+<div style="width:100px;height:100px;background:#FFEBEE;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:24px">
+<svg width="60" height="60" viewBox="0 0 24 24" fill="#E53935"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+</div>
+<h2 style="font-size:22px;font-weight:700;margin-bottom:8px;color:var(--red)">Ошибка</h2>
+<p style="font-size:16px;color:var(--text-light);margin-bottom:32px">Что-то пошло не так</p>
+<button class="btn btn-primary" onclick="showScreen('main')">На главную</button>
+</div>
 </div>
 
 <script>
-// Telegram Web App initialization
 let tg = window.Telegram?.WebApp;
-if (tg) {
-  tg.ready();
-  tg.expand();
-  tg.setHeaderColor('#FFFFFF');
-  tg.setBackgroundColor('#FFFFFF');
-}
+if (tg) { tg.ready(); tg.expand(); tg.setHeaderColor('#FFFFFF'); tg.setBackgroundColor('#FFFFFF'); }
 
-// Screen navigation
 let currentScreen = 'splash';
 let screenHistory = [];
 
 function showScreen(id) {
-  if (currentScreen !== id) {
-    screenHistory.push(currentScreen);
-  }
+  if (currentScreen !== id) screenHistory.push(currentScreen);
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(id);
-  if (target) {
-    target.classList.add('active');
-    currentScreen = id;
-    window.scrollTo(0, 0);
-  }
-
-  // Update Telegram back button
+  if (target) { target.classList.add('active'); currentScreen = id; window.scrollTo(0, 0); }
   if (tg) {
-    if (['splash', 'welcome', 'main'].includes(id)) {
-      tg.BackButton.hide();
-    } else {
-      tg.BackButton.show();
-    }
+    if (['splash', 'welcome', 'main'].includes(id)) tg.BackButton.hide();
+    else tg.BackButton.show();
   }
 }
 
 function goBack() {
   if (screenHistory.length > 0) {
     const prev = screenHistory.pop();
-    showScreen(prev);
-    screenHistory.pop(); // Remove duplicate
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(prev);
+    if (target) { target.classList.add('active'); currentScreen = prev; window.scrollTo(0, 0); }
   }
 }
 
-// Telegram back button handler
-if (tg) {
-  tg.BackButton.onClick(goBack);
-}
+if (tg) tg.BackButton.onClick(goBack);
 
-// Option selection
 function selectOption(el, nextScreen) {
-  const options = el.parentElement.querySelectorAll('.option-card');
-  options.forEach(o => o.classList.remove('selected'));
+  el.parentElement.querySelectorAll('.option-card').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   setTimeout(() => showScreen(nextScreen), 300);
 }
 
-// Checkbox toggle
 function toggleCheck(row) {
-  const cb = row.querySelector('.checkbox');
-  cb.classList.toggle('checked');
-  updatePrivacyButton();
+  row.querySelector('.checkbox').classList.toggle('checked');
 }
 
 function checkAllPrivacy() {
   document.querySelectorAll('#privacy .checkbox').forEach(cb => cb.classList.add('checked'));
-  updatePrivacyButton();
 }
 
-function updatePrivacyButton() {
-  const allChecked = document.querySelectorAll('#privacy .checkbox.checked').length >= 2;
-  const btn = document.getElementById('privacyBtn');
-  if (allChecked) {
-    btn.classList.remove('btn-disabled');
-    btn.classList.add('btn-primary');
-  } else {
-    btn.classList.add('btn-disabled');
-    btn.classList.remove('btn-primary');
-  }
+function selectPlan(el) {
+  document.querySelectorAll('.price-card').forEach(c => { c.style.borderColor = '#E0E0E0'; c.style.background = ''; });
+  el.style.borderColor = 'var(--red)';
+  el.style.background = 'rgba(229,57,53,.04)';
+  const btn = document.getElementById('paywallBtn');
+  if (btn) { btn.classList.remove('btn-disabled'); btn.classList.add('btn-primary'); }
 }
 
-// Upload handler
 function handleUpload(type) {
   showScreen('fileAccepted');
-  setTimeout(() => {
-    showScreen('processing');
-    setTimeout(() => {
-      showScreen('assistant');
-    }, 3000);
-  }, 1500);
+  setTimeout(() => { showScreen('processing'); setTimeout(() => showScreen('assistant'), 3000); }, 1500);
 }
 
-// Tab switching
 function switchTab(el, screen) {
   showScreen(screen);
 }
 
-// Chat
-function sendChatMessage() {
-  const input = document.getElementById('chatInput');
-  if (!input || !input.value.trim()) return;
-  const msg = input.value.trim();
-  input.value = '';
-
-  const chatArea = document.querySelector('#results .content');
-  const userBubble = document.createElement('div');
-  userBubble.className = 'chat-bubble user';
-  userBubble.textContent = msg;
-  userBubble.style.alignSelf = 'flex-end';
-  chatArea.appendChild(userBubble);
-
-  setTimeout(() => {
-    const botBubble = document.createElement('div');
-    botBubble.className = 'chat-bubble bot';
-    botBubble.textContent = 'Спасибо за ваш вопрос! Я анализирую информацию и скоро отвечу подробнее.';
-    chatArea.appendChild(botBubble);
-    chatArea.scrollTop = chatArea.scrollHeight;
-  }, 1000);
-
-  chatArea.scrollTop = chatArea.scrollHeight;
+function switchBioTab(el, type) {
+  el.parentElement.querySelectorAll('.bio-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
 }
 
-// Delete data confirmation
 const deleteInput = document.getElementById('deleteCode');
 if (deleteInput) {
   deleteInput.addEventListener('input', function() {
     const btn = document.getElementById('deleteBtn');
-    if (this.value === '3890') {
-      btn.classList.remove('btn-disabled');
-      btn.classList.add('btn-primary');
-    } else {
-      btn.classList.add('btn-disabled');
-      btn.classList.remove('btn-primary');
-    }
+    if (this.value === '3890') { btn.classList.remove('btn-disabled'); btn.classList.add('btn-primary'); }
+    else { btn.classList.add('btn-disabled'); btn.classList.remove('btn-primary'); }
   });
 }
 
 function confirmDelete() {
-  if (document.getElementById('deleteCode').value === '3890') {
-    alert('Все данные удалены');
-    showScreen('main');
-  }
+  if (document.getElementById('deleteCode').value === '3890') { alert('Все данные удалены'); showScreen('main'); }
 }
 
-// Splash screen auto-transition
-setTimeout(() => {
-  showScreen('welcome');
-}, 2000);
-
-// Enter key for chat
-document.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter' && currentScreen === 'results') {
-    sendChatMessage();
-  }
-});
+setTimeout(() => showScreen('welcome'), 2500);
 </script>
 </body>
 </html>
